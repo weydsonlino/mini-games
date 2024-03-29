@@ -1,33 +1,94 @@
-<script>
+<script lang="ts">
+
 //Estabelecendo variaveis para controle do game
     let desafioAtual = 0
     let respostaUser = ""
     let controle = ""
-    let status = ""
+    let status =""
     let dicas = 0
     let pontos = 0
     const quantidadeDicas = 2
+    const evitarRepeticao = []
+
+    const getHighScore = JSON.parse(localStorage.getItem('Recorde') || "null")
+    const score = {
+        highScore: 0,
+    }
+//Criando o LocalStorage
+    criandoLocalStorage()
+    function criandoLocalStorage(){
+        //Pegando o valor do Highscore no local storage (Serve para a checagem da existencia de um localstorage )
+        getHighScore
+        //Setando o valor do Higscore no jogo com o valor do storagelocal
+        score.highScore = getHighScore
+        //Chegando se existe algum recorde no storage
+        if (getHighScore > 0) {
+            //Sicnoizando o recorde do game com o pre guardado no local storage
+            score.highScore = getHighScore
+        }else{
+            //Setando o highscore para 0 se não o resultado sera "null"
+            score.highScore = 0
+            //Criando o local storage já q não existe um ainda
+            const setHighScore = localStorage.setItem('Recorde', JSON.stringify(score.highScore))
+            getHighScore
+            
+        }
+
+    }
 
 //Criando um "objeto" dos desafios e atribuindo caracteristica a eles
     class desafios{
-        constructor(tema, dica1, dica2, dica3, resposta, pontuacao){
-        this.tema = tema
-        this.dica1 = dica1
-        this.dica2 = dica2
-        this.dica3 = dica3
-        this.pontuacao = pontuacao
-        this.resposta = resposta
+        public tema: string;
+        public dica1: string;
+        public dica2: string;
+        public dica3: string;
+        public resposta: string;
+        public pontuacao: number;
+        constructor(tema:string, dica1:string, dica2:string, dica3:string, resposta:string, pontuacao:number){
+            this.tema = tema
+            this.dica1 = dica1
+            this.dica2 = dica2
+            this.dica3 = dica3
+            this.pontuacao = pontuacao
+            this.resposta = resposta
         }
     }
 
 //Criando os desafios de forma individual de acordo com as caracteristica da class
     const todosDesafios = [
         new desafios('League of legends','Sou verde', 'Sou o monstro de baixo da sua cama', 'Capturo mulheres', 'tresh', 100),
-        new desafios('Personagem de filme', 'Tenho rodas', 'Eu corro na copa pistão', 'prefiro ajudar um amigo do que vencer', 'relampago mcqueen', 100),
+     //   new desafios('Personagem de filme', 'Tenho rodas', 'Eu corro na copa pistão', 'Prefiro ajudar um amigo do que vencer', 'relampago mcqueen', 100),
         new desafios('Valorant','Sou roxa','Quando ulto fico encapetada', 'Gosto de almas', 'reyna', 100),
-        new desafios('Overwatch', 'Sou uma garota', 'Pede pra nerfar', 'Eu tenho algo que me ajuda a voar', 'd.va', 100)
+     //   new desafios('Overwatch', 'Sou uma garota', 'Pede pra nerfar', 'Eu tenho algo que me ajuda a voar', 'd.va', 100)
     ]
+    
+    aleatorizarDesafios()
     controle = todosDesafios[desafioAtual].resposta
+    function aleatorizarDesafios(){
+
+        const numMin = Math.ceil(0);
+        const numMax = Math.floor(todosDesafios.length);
+        desafioAtual =  Math.floor(Math.random() * (numMax - numMin)) + numMin;
+        
+        if (todosDesafios.length == evitarRepeticao.length ) {
+            status = "Acabou"
+        }else if(evitarRepeticao.length < todosDesafios.length){
+            
+            while (evitarRepeticao.includes(desafioAtual)) {
+                const numMin = Math.ceil(0);
+                const numMax = Math.floor(todosDesafios.length);
+                desafioAtual =  Math.floor(Math.random() * (numMax - numMin)) + numMin;
+            }
+            evitarRepeticao.push(desafioAtual)
+        }
+        
+        
+        console.log("Evitar = ", evitarRepeticao);
+        console.log("Evitar tamanho = ", evitarRepeticao.length)
+        console.log("Desafios = ",todosDesafios.length)
+        
+
+    }
     
 //Funções
     function pedirDica() {
@@ -37,30 +98,44 @@
         } 
     }
     function conferirResposta(){
+        criandoLocalStorage() 
 
         respostaUser = respostaUser.toLocaleLowerCase()
         if (respostaUser == controle) {
             status = "Acertou"
-            setTimeout(reiniciarJogo, 3000)
+            setTimeout(reiniciarJogo, 2000)
             pontos += todosDesafios[desafioAtual].pontuacao
-
+            saveHighScore()
+        }
+        else if(respostaUser ==""){
+            status = "Escreva algo"
+            setTimeout(resetarStatus, 2000)
         }
         else{
             todosDesafios[desafioAtual].pontuacao -= 10
             status = "Errou"
+            setTimeout(resetarStatus, 2000)
         }
     }
-    function reiniciarJogo() {
-        if (desafioAtual >= (todosDesafios.length - 1)) {
-            desafioAtual = 0
+
+    function saveHighScore(){
+        if (pontos > getHighScore) {
+            score.highScore = pontos
+            const setHighScore = localStorage.setItem('Recorde', JSON.stringify(score.highScore))
         }
-        else{
-            desafioAtual++
-        }
+    }
+
+    function resetarStatus() {
+        respostaUser = ""
         status = ""
+    }
+    function reiniciarJogo() {
+        status = ""
+        aleatorizarDesafios()
+        saveHighScore()
+        
         respostaUser = ""
         controle = todosDesafios[desafioAtual].resposta
-        console.log(controle)
         dicas = 0
     }
 
@@ -68,12 +143,18 @@
 
 <main id="conteiner">
 
-    <h1 id="jogoSelecionado">Adivinha?¿</h1>
+    
 
+    <h1 id="jogoSelecionado">Adivinha?¿</h1>
+    
 
     <div id="jogo">
-        
         <h2 id="tittle">{todosDesafios[desafioAtual].tema}</h2>
+        <div id="espacoPontuacao">
+            <h2 class="pontuacao">Pontuação: {pontos}</h2>
+            <h2 class="pontuacao">Record: {score.highScore}</h2>
+        </div>
+        
 
         <div id="espacoDescricao">
             <p class="descricao">{todosDesafios[desafioAtual].dica1}</p>
@@ -91,12 +172,22 @@
                 {#if dicas < quantidadeDicas}
                     <button on:click={pedirDica} class="button-35">Dica {dicas}/{quantidadeDicas}</button>
                 {:else}
-                    <button on:click={pedirDica} class="button-35" disabled >Não tem mais dicas</button>
+                    <button class="button-35" disabled >Não tem mais dicas</button>
+                {/if}
+                {#if status == "Acabou"}
+                    <button class="button-35" >Enviar</button>
+                {:else}
+                    <button on:click={conferirResposta} class="button-35" >Enviar</button>
                 {/if}
                 
-                <button on:click={conferirResposta} class="button-35" >Enviar</button>
             </div>
-                <p id="status">{pontos} <br> {status}</p>
+            <div id="espacoStatus">
+                {#if respostaUser == controle}
+                    <p id="statusAcerto">{status}</p>
+                {:else if !(status == "")}
+                    <p id="statusErro">{status}</p>
+                {/if}
+            </div> 
         </div>    
     </div>
 </main>
@@ -118,9 +209,10 @@
     #conteiner{
         display: flex;
         flex-direction: column;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     }
     #jogo{
-        height: 450px;
+        height: 470px;
         width: 350px;
         background-color: rgb(54, 166, 170);
         padding: 30px;
@@ -134,6 +226,18 @@
     #tittle{
         align-self: center;
         font-family: 'Courier New', Courier, monospace;
+        color: #fff;
+        font-size: 27px;
+        font-weight: bolder;
+        margin: 10px 0 0px 0;
+    }
+    #espacoPontuacao{
+        display: flex;
+        justify-content: space-around;
+    }
+    .pontuacao{
+        font-size: 20px;
+        font-weight: normal;
     }
     #espacoDescricao{
         height: 200px;
@@ -150,6 +254,17 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+    }
+    #espacoStatus{
+        height: 50px;
+        align-self: center;
+        font-size: 20px;
+    }
+    #statusAcerto{
+        background-color: green;
+    }
+    #statusErro{
+        background-color: red;
     }
     #respostaUser{
         margin: 10px 0px 10px 0px;
@@ -209,10 +324,7 @@
     .button-35:hover {
         box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
     }
-    #status{
-        align-self: center;
-        font-size: 20px;
-    }
+    
 </style>
 
 

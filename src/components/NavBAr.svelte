@@ -15,6 +15,7 @@
     </a>
 
     {/each}
+
     
 </nav>
 
@@ -24,18 +25,17 @@
 <style>
     #nav{
         display: flex;
-        flex-direction: row;
-        justify-content: center;
-        width: 100vw;
-        height: 75px;
+        flex-direction: column;
+        width: 150px;
+        height: 100vh;
         background-color: aqua;
     }
     .navItens{
         color: rgb(38, 36, 155);
         font-size: 50px;
         text-decoration: none;
-        margin: 0px 5px;
-        width: 200px;
+        margin: 10px;
+        width: 75px;
     }
 
 </style>
