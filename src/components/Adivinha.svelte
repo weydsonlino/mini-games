@@ -57,9 +57,9 @@
 //Criando os desafios de forma individual de acordo com as caracteristica da class
     const todosDesafios = [
         new desafios('League of legends','Sou verde', 'Sou o monstro de baixo da sua cama', 'Capturo mulheres', 'tresh', 100),
-     //   new desafios('Personagem de filme', 'Tenho rodas', 'Eu corro na copa pistão', 'Prefiro ajudar um amigo do que vencer', 'relampago mcqueen', 100),
+        new desafios('Personagem de filme', 'Tenho rodas', 'Eu corro na copa pistão', 'Prefiro ajudar um amigo do que vencer', 'relampago mcqueen', 100),
         new desafios('Valorant','Sou roxa','Quando ulto fico encapetada', 'Gosto de almas', 'reyna', 100),
-     //   new desafios('Overwatch', 'Sou uma garota', 'Pede pra nerfar', 'Eu tenho algo que me ajuda a voar', 'd.va', 100)
+        new desafios('Overwatch', 'Sou uma garota', 'Pede pra nerfar', 'Eu tenho algo que me ajuda a voar', 'd.va', 100)
     ]
     
     aleatorizarDesafios()
