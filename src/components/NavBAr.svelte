@@ -1,22 +1,23 @@
 <script>
     
-    const navItens = ["Jogo", "Testes"]
+    const navItens = ["Adivinha"]
 
 </script>
 
-<nav id="nav">
+<nav >
+    <ul id="nav">
+        <li  class="navItens"><a href="/">Inicio</a></li>
+        {#each navItens as Item }
+            
+       <li  class="navItens"><a href="/{Item}">
 
-    <a href="/" class="navItens">Inicio</a>
-    {#each navItens as Item }
-        
-    <a href="/{Item}" class="navItens">
+            {Item}
+        </a></li>
+        {/each}
 
-        {Item}
-    </a>
+        <li class="navItens"><a href="https://memory-game-59soty7rb-weydsonlino.vercel.app/">Jogos Antigos</a></li>
+    </ul>
 
-    {/each}
-
-    
 </nav>
 
 
@@ -25,17 +26,24 @@
 <style>
     #nav{
         display: flex;
-        flex-direction: column;
-        width: 150px;
-        height: 100vh;
-        background-color: aqua;
+        flex-direction: row;
+        justify-content: center;
+        width: 100vw;
+        margin-bottom: 0px;
+        background-color: wheat;
     }
     .navItens{
-        color: rgb(38, 36, 155);
-        font-size: 50px;
+        font-size: 25px;
         text-decoration: none;
         margin: 10px;
-        width: 75px;
+        width: 200px;
+        list-style: none;
+        text-decoration: none ;
     }
+    a{
+        text-decoration: none;
+        color: black;
+    }
+    
 
 </style>

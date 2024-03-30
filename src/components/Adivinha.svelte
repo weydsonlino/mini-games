@@ -7,6 +7,7 @@
     let status =""
     let dicas = 0
     let pontos = 0
+    let pontoDesafios = 100
     const quantidadeDicas = 2
     const evitarRepeticao = []
 
@@ -56,10 +57,14 @@
 
 //Criando os desafios de forma individual de acordo com as caracteristica da class
     const todosDesafios = [
-        new desafios('League of legends','Sou verde', 'Sou o monstro de baixo da sua cama', 'Capturo mulheres', 'tresh', 100),
-        new desafios('Personagem de filme', 'Tenho rodas', 'Eu corro na copa pistão', 'Prefiro ajudar um amigo do que vencer', 'relampago mcqueen', 100),
-        new desafios('Valorant','Sou roxa','Quando ulto fico encapetada', 'Gosto de almas', 'reyna', 100),
-        new desafios('Overwatch', 'Sou uma garota', 'Pede pra nerfar', 'Eu tenho algo que me ajuda a voar', 'd.va', 100)
+        new desafios('League of legends','Sou verde', 'Sou o monstro de baixo da sua cama', 'Capturo mulheres', 'tresh', pontoDesafios),
+        new desafios('Personagem de filme', 'Tenho rodas', 'Eu corro na copa pistão', 'Prefiro ajudar um amigo do que vencer', 'relampago mcqueen', pontoDesafios),
+        new desafios('Valorant','Sou roxa','Quando ulto fico encapetada', 'Gosto de almas', 'reyna', pontoDesafios),
+        new desafios('Overwatch', 'Sou uma garota', 'Pede pra nerfar', 'Eu tenho algo que me ajuda a voar', 'd.va', pontoDesafios),
+        new desafios('League of Legends', 'Sou de Demacia', 'Enquando eu puder me levantar eu lutarei', 'Minha espada é gigante', 'garen', pontoDesafios),
+        new desafios('Personagem de filme', 'Moro distante de todos', 'Sou verde', 'Tenho um amigo burro', 'shrek', pontoDesafios),
+        new desafios('Personagem de filme', 'Sou uma princesa', 'Tenho poderes','Deixo tudo congelado', 'elsa', pontoDesafios),
+        new desafios('Valorant', 'Gosto das minhas bombas', 'Eu explodo tudo', 'Sou Bahiana', 'raze', pontoDesafios),
     ]
     
     aleatorizarDesafios()
@@ -172,8 +177,9 @@
                 {#if dicas < quantidadeDicas}
                     <button on:click={pedirDica} class="button-35">Dica {dicas}/{quantidadeDicas}</button>
                 {:else}
-                    <button class="button-35" disabled >Não tem mais dicas</button>
+                    <button on:click={reiniciarJogo} class="button-35" >Pular desafio</button>
                 {/if}
+
                 {#if status == "Acabou"}
                     <button class="button-35" >Enviar</button>
                 {:else}
@@ -204,7 +210,8 @@
 <style>
     #jogoSelecionado{
         align-self: center;
-        color:rgb(54, 166, 170);
+        color:#ffffff;
+        font-weight: bolder;
     }
     #conteiner{
         display: flex;
@@ -214,7 +221,7 @@
     #jogo{
         height: 470px;
         width: 350px;
-        background-color: rgb(54, 166, 170);
+        background-color: #f0d01a;
         padding: 30px;
         display: flex;
         flex-direction: column;
@@ -226,8 +233,9 @@
     #tittle{
         align-self: center;
         font-family: 'Courier New', Courier, monospace;
-        color: #fff;
-        font-size: 27px;
+        color: #df7c0a;;
+        font-size: 30px;
+        text-decoration: underline;
         font-weight: bolder;
         margin: 10px 0 0px 0;
     }
@@ -245,7 +253,7 @@
     .descricao{
         margin-bottom: 30px;
         font-size: 20px;
-        font-weight: bold;
+        margin-left: 10px;
     }
     #EspacoBotoes{
         display: flex;
