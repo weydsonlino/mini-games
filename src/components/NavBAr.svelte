@@ -1,21 +1,11 @@
 <script>
-    
-    const navItens = ["Adivinha"]
+
 
 </script>
 
 <nav >
     <ul id="nav">
         <li  class="navItens"><a href="/">Inicio</a></li>
-        {#each navItens as Item }
-            
-       <li  class="navItens"><a href="/{Item}">
-
-            {Item}
-        </a></li>
-        {/each}
-
-        <li class="navItens"><a href="https://memory-game-59soty7rb-weydsonlino.vercel.app/">Jogos Antigos</a></li>
     </ul>
 
 </nav>
