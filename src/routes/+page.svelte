@@ -1,10 +1,11 @@
-<script>
-    import NavBAr from "../components/NavBAr.svelte";
-    import Conteudo from "../components/Conteudo.svelte";
-    import Footer from "../components/footer.svelte";
+<script lang="ts">
+    import Conteudo from "../lib/components/Conteudo.svelte";
+    import Footer from "../lib/components/footer.svelte";
+    import { ModeWatcher } from "mode-watcher";
 
 </script>
 <body id="inicioBody">
+    
     <div id="content">
         <Conteudo/>
     </div>

@@ -1,6 +1,6 @@
 <script>
 
-    import NavBAr from "../../components/NavBAr.svelte";
+    import NavBAr from "../../lib/components/NavBAr.svelte";
 
 </script>
 

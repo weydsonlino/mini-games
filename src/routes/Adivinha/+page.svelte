@@ -1,11 +1,11 @@
 <script>
-    import Adivinha from "../../components/Adivinha.svelte";
-    import NavBAr from "../../components/NavBAr.svelte";
-  import Footer from "../../components/footer.svelte";
+    import Adivinha from "../../lib/components/Adivinha.svelte";
+    import NavBAr from "../../lib/components/NavBAr.svelte";
+    import Footer from "../../lib/components/footer.svelte";
   
 </script>
     <body id="bodyJogo">
-            <NavBAr/>   
+        <NavBAr/>   
         <main id="campoJogo">
             <Adivinha/>
         </main>
@@ -24,6 +24,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        
+        justify-content: center;
     }
 </style>

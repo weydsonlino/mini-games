@@ -176,9 +176,15 @@
             <div id="EspacoBotoes">
                 {#if dicas < quantidadeDicas}
                     <button on:click={pedirDica} class="button-35">Dica {dicas}/{quantidadeDicas}</button>
+                {:else if status == "Acabou"}
+                    <button class="button-35"><a href="/">Acabou os Desafios</a></button>
                 {:else}
                     <button on:click={reiniciarJogo} class="button-35" >Pular desafio</button>
                 {/if}
+
+
+
+
 
                 {#if status == "Acabou"}
                     <button class="button-35" >Enviar</button>

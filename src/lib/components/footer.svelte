@@ -6,7 +6,7 @@
 <footer id="rodape">
     <ul id="espacoRedes">
         <li class="redes"><a href="">My Linkedin</a></li>
-        <li class="redes">Made By <a href="https://github.com/weydsonlino"><span id="meuNome"> Weydson Silva</span></a>. "I hate design, ok?"</li>
+        <li class="redes">Made By <a href="https://github.com/weydsonlino"><span id="meuNome"> Weydson Silva</span></a>. "Just a dream"</li>
     </ul>
 </footer>
 

@@ -11,8 +11,6 @@
 </nav>
 
 
-
-
 <style>
     #nav{
         display: flex;
