@@ -20,16 +20,17 @@
     #espacoRedes{
         display: flex;
         justify-content: center;
-        background-color: wheat;
+        background-color: rgb(0, 0, 0);
         width: 100vw;
     }
     .redes{
         list-style: none;
         margin: 20px;
+        color: rgb(255, 255, 255);
     }
     a{
         text-decoration: none;
-        color: black;
+        color: rgb(255, 255, 255);
     }
     #meuNome{
         color: #df7c0a;

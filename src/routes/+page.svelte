@@ -1,14 +1,15 @@
 <script lang="ts">
     import Conteudo from "../lib/components/Conteudo.svelte";
     import Footer from "../lib/components/footer.svelte";
-    import { ModeWatcher } from "mode-watcher";
+    import NavBAr from "../lib/components/NavBAr.svelte";
 
 </script>
 <body id="inicioBody">
-    
+    <NavBAr link = "\Adivinha" text = "Jogar"/>
+    <h1 id="tilte">Mini Games</h1>
     <div id="content">
-        <Conteudo/>
-    </div>
+    <Conteudo/>
+        </div>
     <Footer/>   
 </body>
 
@@ -16,16 +17,20 @@
     #inicioBody{
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        height: 100vh;
+    }
+    #tilte{
+        display: flex;
+        justify-content: center;
         align-items: center;
-        width: 96vw;
-        height: 90vh;
-        background-color: #df7c0a;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 75px;
+        margin-top: 20px;
     }
     #content{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
     
 </style>

@@ -87,12 +87,6 @@
             evitarRepeticao.push(desafioAtual)
         }
         
-        
-        console.log("Evitar = ", evitarRepeticao);
-        console.log("Evitar tamanho = ", evitarRepeticao.length)
-        console.log("Desafios = ",todosDesafios.length)
-        
-
     }
     
 //Funções
@@ -172,7 +166,7 @@
         </div>
         
         <div id="EspacoUsuario">
-            <input type="text" id="respostaUser" placeholder="Resposta"bind:value={respostaUser}/>
+            <input type="text" id="respostaUser" placeholder="Resposta"bind:value={respostaUser} autofocus/>
             <div id="EspacoBotoes">
                 {#if dicas < quantidadeDicas}
                     <button on:click={pedirDica} class="button-35">Dica {dicas}/{quantidadeDicas}</button>
@@ -187,9 +181,9 @@
 
 
                 {#if status == "Acabou"}
-                    <button class="button-35" >Enviar</button>
+                    <button class="button-35">Enviar</button>
                 {:else}
-                    <button on:click={conferirResposta} class="button-35" >Enviar</button>
+                    <button on:click={conferirResposta} class="button-35">Enviar</button>
                 {/if}
                 
             </div>
@@ -216,7 +210,7 @@
 <style>
     #jogoSelecionado{
         align-self: center;
-        color:#ffffff;
+        color:#000000;
         font-weight: bolder;
     }
     #conteiner{
