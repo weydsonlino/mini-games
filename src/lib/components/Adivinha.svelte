@@ -9,7 +9,7 @@
     let pontos = 0
     let pontoDesafios = 100
     const quantidadeDicas = 2
-    const evitarRepeticao = []
+    const evitarRepeticao:number[] = []
 
     const getHighScore = JSON.parse(localStorage.getItem('Recorde') || "null")
     const score = {
@@ -57,7 +57,7 @@
 
 //Criando os desafios de forma individual de acordo com as caracteristica da class
     const todosDesafios = [
-        new desafios('League of legends','Sou verde', 'Sou o monstro de baixo da sua cama', 'Capturo mulheres', 'tresh', pontoDesafios),
+        new desafios('League of legends','Sou verde', 'Sou o monstro de baixo da sua cama', 'Capturo mulheres', 'thresh', pontoDesafios),
         new desafios('Personagem de filme', 'Tenho rodas', 'Eu corro na copa pistão', 'Prefiro ajudar um amigo do que vencer', 'relampago mcqueen', pontoDesafios),
         new desafios('Valorant','Sou roxa','Quando ulto fico encapetada', 'Gosto de almas', 'reyna', pontoDesafios),
         new desafios('Overwatch', 'Sou uma garota', 'Pede pra nerfar', 'Eu tenho algo que me ajuda a voar', 'd.va', pontoDesafios),
